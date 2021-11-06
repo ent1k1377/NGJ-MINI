@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(Animator))]
 public class FaderLVL1 : MonoBehaviour
 {
     [SerializeField] static private GameObject _fadedCanvas;
