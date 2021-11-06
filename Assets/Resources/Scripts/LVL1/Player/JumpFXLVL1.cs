@@ -13,7 +13,7 @@ public class JumpFXLVL1 : MonoBehaviour
     private float _timeIntervalBetweenJump = 0.1f;
     private float _timePassed;
 
-    private float _minTimeJump = 0.1f;
+    private float _minTimeJump = 0.3f;
     private float _currentTimeJump;
 
     private Animator _animator;
@@ -38,7 +38,8 @@ public class JumpFXLVL1 : MonoBehaviour
             SetParametrsAnimator(isRun: true);
             _timePassed += Time.deltaTime;
         }
-            
+        else
+            _currentTimeJump += Time.deltaTime;
     }
 
     public void PlayAnimation(Transform jumper, float duration)
@@ -49,14 +50,12 @@ public class JumpFXLVL1 : MonoBehaviour
 
     public void StopCoroutine()
     {
-        if (_coroutineJump != null)
+        if (_coroutineJump != null && _currentTimeJump > _minTimeJump)
         {
             StopCoroutine(_coroutineJump);
             _coroutineJump = null;
             SetParametrsAnimator(isJumpUp:true);
         }
-            
-        
     }
 
     private void SetParametrsAnimator(bool isRun = false, bool isJumpUp = false, bool isJumpDown = false)
@@ -111,6 +110,8 @@ public class JumpFXLVL1 : MonoBehaviour
 
         if (!_isGround)
             _timePassed = 0f;
+        else
+            _currentTimeJump = 0f;
     }
 
     private void OnEnable()
