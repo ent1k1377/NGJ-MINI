@@ -11,4 +11,10 @@ public class PlayerCollisionLVL1 : MonoBehaviour
             PlayerDied?.Invoke();
             
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out EnemyLVL1 _enemy))
+            PlayerDied?.Invoke();
+    }
 }

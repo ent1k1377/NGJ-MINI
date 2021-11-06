@@ -13,7 +13,7 @@ public class JumpFXLVL1 : MonoBehaviour
     private float _timeIntervalBetweenJump = 0.1f;
     private float _timePassed;
 
-    private float _minTimeJump = 0.3f;
+    private float _minTimeJump = 0.1f;
     private float _currentTimeJump;
 
     private Animator _animator;
