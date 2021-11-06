@@ -9,5 +9,6 @@ public class PlayerCollisionLVL1 : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out EnemyLVL1 _enemy))
             PlayerDied?.Invoke();
+            
     }
 }
