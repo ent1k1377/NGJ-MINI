@@ -14,8 +14,10 @@ public class KeyboardInputLVL1 : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(GameOptions.Key))
-            _playerJump.Jump();
+        if (Input.GetKey(GameOptions.Key))
+            _playerJump.Jump();  
+        else
+            _playerJump.StopJump();
 
         _playerMovement.Run(Vector2.right);
     }

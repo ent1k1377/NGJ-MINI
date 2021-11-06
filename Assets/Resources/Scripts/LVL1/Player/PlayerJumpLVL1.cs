@@ -15,4 +15,9 @@ public class PlayerJumpLVL1 : MonoBehaviour
     {
         _jumpFX.PlayAnimation(transform, _duration);
     }
+
+    public void StopJump()
+    {
+        _jumpFX.StopCoroutine();
+    }
 }

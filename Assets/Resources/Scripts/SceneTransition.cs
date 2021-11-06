@@ -17,7 +17,6 @@ public class SceneTransition : MonoBehaviour
         }
 
         _instance = this;
-        //DontDestroyOnLoad(gameObject);
     }
 
     public void Restart()
