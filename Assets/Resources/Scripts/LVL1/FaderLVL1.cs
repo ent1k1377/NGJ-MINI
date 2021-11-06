@@ -1,11 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class FaderLVL1 : MonoBehaviour
 {
     [SerializeField] static private GameObject _fadedCanvas;
-    
+
+    private const string FADE_PATH = "Prefabs/Fader";
+
     private Animator _animator;
     private bool _faded;
 
@@ -19,7 +20,7 @@ public class FaderLVL1 : MonoBehaviour
         {
             if (_instance == null)
             {
-                var prefab = Resources.Load<FaderLVL1>("Prefabs/Fader");
+                var prefab = Resources.Load<FaderLVL1>(FADE_PATH);
                 _instance = Instantiate(prefab);
                 DontDestroyOnLoad(_instance.gameObject);
             }

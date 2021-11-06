@@ -2,13 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FaderExample : MonoBehaviour
+public class SceneTransition : MonoBehaviour
 {
-    [SerializeField] private string _nameScene;
-
     private bool _isLoading;
 
-    private static FaderExample _instance;
+    private static SceneTransition _instance;
 
     private void Awake()
     {
@@ -22,21 +20,19 @@ public class FaderExample : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            LoadScene();
-        }
-    }
-
-    private void LoadScene()
+    public void Restart()
     {
         if (!_isLoading)
-            StartCoroutine(LoadSceneRoutine());
+            StartCoroutine(LoadSceneRoutine(SceneManager.GetActiveScene().name));
     }
 
-    private IEnumerator LoadSceneRoutine()
+    public void LoadScene(string sceneName)
+    {
+        if (!_isLoading)
+            StartCoroutine(LoadSceneRoutine(sceneName));
+    }
+
+    private IEnumerator LoadSceneRoutine(string sceneName)
     {
         _isLoading = true;
 
@@ -46,7 +42,7 @@ public class FaderExample : MonoBehaviour
         while (waitFading)
             yield return null;
 
-        var async = SceneManager.LoadSceneAsync(_nameScene);
+        var async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
 
         while (async.progress < 0.9f)
